@@ -11,7 +11,12 @@ const SIDE = 6
 const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
 
 class App extends Component {
-  cards = this.generateCards()
+  state = { // garde l'etat dans les render
+    cards: this.generateCards(),
+    currentPair: [],
+    guesses: 0,
+    machedCardIndices: [],
+  }
 
   generateCards() {
     const result = []
@@ -29,11 +34,12 @@ class App extends Component {
   }
 
   render() {
-    const won = new Date().getSeconds() % 2 === 0
+    const {cards, guesses, matchedCardIndices} = this.state //recup de state
+    const won = matchedCardIndices.length === cards.length // gagne si autant de pair que de cartes dispo
     return (
       <div className="memory">
-        <GuessCount guesses={0} />
-        {this.cards.map((card, index) =>(
+        <GuessCount guesses={guesses} />
+        {cards.map((card, index) =>(
           <Card card={card} feedback="visible" key={index} onClick= {this.handleCardClick}/>
          ))}
         {won && <HallOfFame entries={FAKE_HOF} />}

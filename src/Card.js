@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import './Card.css'
@@ -12,5 +13,13 @@ const Card = ({card, feedback, onClick}) => (//destructuration probs
 	</div>
 
 )
-
+ Card.propTypes = {
+ 	card: PropTypes.string.isRequired,
+ 	feedback: PropTypes.oneOf([
+ 		'visible',
+ 		'hidden',
+ 		'justMatched',
+ 		'justMissmached'
+ 	])
+ }
 export default Card

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 
 import './HallOfFame.css'
@@ -16,17 +15,6 @@ const HallOfFame = ({ entries }) => (
     </tbody>
   </table>
 )
-
-HallOfFame.propTypes = { // gere les erreurs en dev uniquement
-	entries: PropTypes.arrayOf(
-	PropTypes.shape({ // décrit la structure de l'objet
-		id: PropTypes.number.isRequired,
-		date: PropTypes.string.isRequired,
-		guesses: PropTypes.number.isRequired,
-		player: PropTypes.string.isRequired
-	}) 
-	).isRequired
-}
 
 export default HallOfFame
 
